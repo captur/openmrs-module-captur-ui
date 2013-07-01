@@ -11,12 +11,16 @@
 <% ui.includeCss("kenyaui", "kenyaui.css") %>
 <% ui.includeCss("kenyaui", "toastmessage/css/jquery.toastmessage.css") %>
 
+<% if (!config.allowAnonymous) { %>
+${ ui.includeFragment("kenyaui", "maybeRequireLogin") }
+<% } %>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Kenya EMR</title>
-		<link rel="shortcut icon" type="image/ico" href="/${ contextPath }/images/openmrs-favicon.ico">
-		<link rel="icon" type="image/png" href="/${ contextPath }/images/openmrs-favicon.png">
+		<link rel="shortcut icon" type="image/ico" href="${ ui.resourceLink("kenyaui", "images/logos/favicon.ico") }">
+		<link rel="icon" type="image/png" href="${ ui.resourceLink("kenyaui", "images/logos/favicon.png") }">
 
 		<%= ui.resourceLinks() %>
 
@@ -26,22 +30,17 @@
 			var OPENMRS_CONTEXT_PATH = '${ contextPath }';
 			var CONTEXT_PATH = '${ contextPath }';
 		</script>
-
-		<% if (config.beforeContent) { %>
-			${ config.beforeContent }
-		<% } %>
-
-		${ ui.includeFragment("kenyaui", "notifications") }
-
-		<% if (!config.allowAnonymous) { %>
-			${ ui.includeFragment("kenyaui", "maybeRequireLogin") }
-		<% } %>
-
 		<style type="text/css">
 			.ke-loading {
 				background-image: url('${ ui.resourceLink("kenyaui", "images/loader_small.gif") }');
 			}
 		</style>
+
+		${ ui.includeFragment("kenyaui", "notifications") }
+
+		<% if (config.beforeContent) { %>
+			${ config.beforeContent }
+		<% } %>
 
 		<div id="content">
 			<%= config.content %>
