@@ -1,5 +1,5 @@
-KenyaUI Library OpenMRS Module
-===========================
+CAPTUR-UI Library OpenMRS Module
+================================
 
 Overview
 --------
